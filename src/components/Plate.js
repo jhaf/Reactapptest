@@ -2,15 +2,38 @@
 
 import $ from "jquery";
 
-import React, {Component} from 'react';
+import React from 'react';
 
-class Plate extends Component {
-    render(){
-        return(
-            <div id="plate">
-            </div>
+const Plate = ({rows, cols}) => {
+    const rowsArr = Array(rows)
+    const colsArr = Array(cols)
+
+    return(
+        <div id="plate">
+            <table class="mb-3">
+                <tbody>
+                    <tr>
+                        <th></th>
+                        {rowsArr.map((e, row) => <th scope="col" className ="textcenter">{convertCol2Alpha(row)}</th>)}
+                    </tr>
+                </tbody>
+                <tbody>
+                    {rowsArr.map((e, row) => (
+                        <tr>
+                            <th id={row} scope="row">{row}</th>
+                            {colsArr.map((e, col) => {
+                                const cell = convertCol2Alpha(col) + row
+
+                                return <td id={cell} row={row} class="border border-2" /*onclick={(cell)}*/ data-toggle="tooltip" data-placement="top" title="Empty">
+                                    <section className="hovercell mx-1">{cell}</section>
+                                </td>
+                            })}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
         );
-    }
 }
 export default Plate;
 
@@ -68,4 +91,4 @@ newTable();
 
 //document.getElementById("plate").innerHTML = generateTable(16,8);
 
-$("#plate").add(generateTable(16,8));
+//$("#plate").add(generateTable(16,8));
