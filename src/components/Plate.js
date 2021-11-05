@@ -1,13 +1,22 @@
 //Home.jsY
 
-import $ from "jquery";
-
 import React from 'react';
+import useParams from 'react';
 
-const Plate = ({rows, cols}) => {
-    const rowsArr = Array(rows)
-    const colsArr = Array(cols)
 
+
+
+const Plate = (props) => {
+    
+    const rows = +props.row;
+    const cols = +props.col;
+    
+    const rowsArr = new Array(rows)
+    const colsArr = new Array(cols)
+    rowsArr.fill("");
+    colsArr.fill("");
+    console.log(rowsArr)
+    console.log(colsArr)
     return(
         <div id="plate">
             <table class="mb-3">
@@ -39,7 +48,23 @@ export default Plate;
 
 let rowFill = {};
 const convertCol2Alpha = (col) => String.fromCharCode(65 + col);
-
+/*
+const newTable = () => {
+    if (size.value == "96") {
+        rows = 12;
+        cols = 8;
+    }
+    if (size.value == "384") {
+        rows = 24;
+        cols = 16;
+    }
+    if(size.value == "1536") {
+        rows = 64;
+        cols = 24;
+    }
+    table.innerHTML = generateTable(rows, cols);
+}
+*/
 
 const generateTable = (rows, cols) => {
     let tableHTML = `<table class="mb-3"><tbody><tr><th></th>`;

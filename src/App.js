@@ -22,7 +22,7 @@ class App extends Component{
           </nav>
           <hr />
           <Switch>
-            <Route path='/plate' component={Plate} /> 
+            <Route path='/plate' render={(props)=><Plate {...props} row='12' col='8'/>} />
             <Route path='/barcodes' component={Barcodes} />
             <Route path='/about' component={About} />
           </Switch>
